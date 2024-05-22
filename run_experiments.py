@@ -393,19 +393,13 @@ args = parser.parse_args()
 if args.all:
     problems = ["node_count", "edge_count", "node_degree", "connected_nodes", "connected_components_count", "cycle_check",
                 "shortest_path", "minimum_spanning_tree", "topological_sorting", "bipartite"]
-    # problems = ["node_degree", "connected_nodes", "cycle_check", "bipartite", "topological_sorting"]
-    # problems = ["mst", "shortest_path", "topological_sorting", "cycle_check"]
-    # problems = ["cycle_check"]
-    # sizes = ["large"]
+    
     sizes = ["small", "medium", "large"]
     # types = ["er", "ba", "path", "complete", "sbm", "sfn", "star"]
     types = ["er"]
-    methods = ["bag"]
-    # methods = ["none", "default_1_shot", "cot", "alg", "1_shot_pseudo"]
-    # methods = ["default_1_shot", "default_2_shot", "default_5_shot",
-               # "pseudo_1_shot", "pseudo_2_shot", "pseudo_5_shot"]
 
-    # args.model = 'gpt-4o'
+    methods = ["none", "default_1_shot", "cot", "alg", "1_shot_pseudo"]
+
     args.model = 'gpt-3.5-turbo'
 
     for problem in problems:
