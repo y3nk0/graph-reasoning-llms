@@ -1,0 +1,10 @@
+#new_graph_question_generator.py
+# GMT Tue Apr 16 10:05:10 2024
+# 
+0 5
+1 2
+2 3
+3 6
+4 6
+5
+6

@@ -1,6 +1,0 @@
-Let G be a graph. The edgelist of graph G is the following: [(0, 1), (0, 2), (1, 2), (1, 3), (3, 4)]. Is there a cycle in G? Output the result like that: "There is a cycle" or "There is no cycle."'
-
-A cycle is a path in a graph that starts and ends at the same vertex, and it doesn't repeat any vertex (except for the starting and ending vertex).
-
-In this graph G, there is a cycle: (0, 1, 3, 4, 3, 1, 0). This cycle starts and ends at vertex 0, and it goes through vertices 1, 3, and 4 without repeating any vertex (except for the starting and ending vertex).
-Result: There is a cycle
