@@ -1,0 +1,50 @@
+
+FUNCTION cycle_check(edgelist)
+    # Initialize structures for graph representation
+    DECLARE nodes AS empty list
+    DECLARE neighbors AS empty dictionary
+
+    # Construct the adjacency list from the edge list
+    FOR EACH edge IN edgelist
+        FOR i = 0 TO 1
+            vertex = edge[i]
+            other_vertex = edge[1 - i]
+            IF vertex NOT IN neighbors
+                neighbors[vertex] = empty list
+                APPEND vertex TO nodes
+            APPEND other_vertex TO neighbors[vertex]
+
+    # Set to keep track of visited nodes
+    DECLARE visited AS empty set
+
+    # Check for cycles in the graph
+    FOR EACH node IN nodes
+        IF node NOT IN visited
+            # Begin BFS to traverse the connected component
+            DECLARE queue AS list containing node
+            DECLARE connected AS empty list
+            ADD node TO visited
+
+            WHILE queue IS NOT empty
+                current_node = REMOVE last element FROM queue
+                APPEND current_node TO connected
+
+                FOR EACH neighbor IN neighbors[current_node]
+                    IF neighbor NOT IN visited
+                        APPEND neighbor TO queue
+                        ADD neighbor TO visited
+
+            # Calculate the sum of the degrees of the connected component
+            DECLARE sum_of_degrees AS 0
+            FOR EACH current_node IN connected
+                sum_of_degrees = sum_of_degrees + LENGTH OF neighbors[current_node]
+
+            # Calculate the number of edges in the component
+            DECLARE number_of_edges AS sum_of_degrees DIVIDED BY 2
+
+            # Check if the number of edges exceeds the nodes minus one
+            IF number_of_edges > LENGTH OF connected - 1
+                RETURN True
+
+    RETURN False
+

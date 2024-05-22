@@ -1,0 +1,62 @@
+Function CountNodes(EdgeList):
+    // EdgeList is a list where each element is a tuple (u, v),
+    // indicating an edge between nodes u and v.
+
+    // Initialize a set to store unique nodes
+    Found = Set()
+
+    // Iterate through each edge in the edge list
+    For each edge (u, v) in EdgeList:
+        // Add both nodes of the edge to the set
+	if u not in Found:
+            Add u to Found
+        if u not in Found:
+            Add v to Found
+
+    // The size of Found represents the total number of unique nodes
+    Return Size of Found
+
+Let G be a graph. The edgelist of graph G is the following: [(0, 1), (0, 3), (1, 2), (1, 4), (3, 4), (3, 5), (2, 5), (4, 5)]. What is the number of nodes of G? Follow the provided pseudocode step-by-step and show all steps. Output the result like that: The number of nodes is ...
+Let's follow the provided pseudocode step-by-step:
+
+    Initialize an empty set Found to store unique nodes.
+    Iterate through each edge in the edge list.
+    For each edge (u, v):
+    a. Check if node u is not in Found, then add u to Found.
+    b. Check if node v is not in Found, then add v to Found.
+    The size of Found represents the total number of unique nodes.
+    Return the size of Found.
+
+Now, let's execute the pseudocode with the given edge list:
+
+EdgeList: [(0, 1), (0, 3), (1, 2), (1, 4), (3, 4), (3, 5), (2, 5), (4, 5)]
+
+    Initialize Found set: Found = {}
+    Iterate through each edge:
+        For edge (0, 1):
+            0 is not in Found, add 0 to Found. Found = {0}
+            1 is not in Found, add 1 to Found. Found = {0, 1}
+        For edge (0, 3):
+            0 is already in Found.
+            3 is not in Found, add 3 to Found. Found = {0, 1, 3}
+        For edge (1, 2):
+            1 is already in Found.
+            2 is not in Found, add 2 to Found. Found = {0, 1, 2, 3}
+        For edge (1, 4):
+            4 is not in Found, add 4 to Found. Found = {0, 1, 2, 3, 4}
+        For edge (3, 4):
+            4 is already in Found.
+            3 is already in Found.
+        For edge (3, 5):
+            5 is not in Found, add 5 to Found. Found = {0, 1, 2, 3, 4, 5}
+        For edge (2, 5):
+            5 is already in Found.
+            2 is already in Found.
+        For edge (4, 5):
+            4 is already in Found.
+            5 is already in Found.
+    After all edges are processed, Found contains all unique nodes: {0, 1, 2, 3, 4, 5}.
+    The size of Found is 6, which represents the total number of unique nodes.
+    Return 6.
+
+Output: "The number of nodes is 6."

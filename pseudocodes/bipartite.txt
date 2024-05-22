@@ -1,0 +1,26 @@
+Procedure IsBipartite(EdgeList):
+    Initialize colorMap as an empty dictionary  // To store colors of vertices
+    Initialize queue as an empty queue
+
+    // Create adjacency list from the edge list
+    adjacencyList = {}
+    For each edge (u, v) in EdgeList:
+        Add v to adjacencyList[u]
+        Add u to adjacencyList[v]
+
+    For each vertex in adjacencyList:
+        If vertex is not in colorMap:  // Vertex has not been colored
+            colorMap[vertex] = 0  // Start coloring with color 0
+            queue.enqueue(vertex)
+
+            While queue is not empty:
+                current = queue.dequeue()
+
+                For each neighbor of current in adjacencyList:
+                    If neighbor is not in colorMap:  // If neighbor has no color
+                        colorMap[neighbor] = 1 - colorMap[current]  // Assign opposite color
+                        queue.enqueue(neighbor)
+                    Else If colorMap[neighbor] == colorMap[current]:  // Neighbor has the same color
+                        Return False  // Graph is not bipartite
+
+    Return True  // If no conflicts in coloring, graph is bipartite

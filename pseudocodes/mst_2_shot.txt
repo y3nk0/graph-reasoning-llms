@@ -1,0 +1,72 @@
+Let G be a graph. The edgelist of graph G is the following: [(0, 1), (1, 2), (2, 3), (3, 0), (0, 2)]. What is the minimum spanning tree of G? Output the result as a list.
+
+For finding the minimum spanning tree (MST) of the graph represented by the edge list [(0, 1), (1, 2), (2, 3), (3, 0), (0, 2)], we follow the conceptual approach of Kruskal's algorithm and avoid creating cycles:
+
+Initialize: Assume every vertex starts in its own set, and prepare to unite these sets as edges are added, ensuring no cycles.
+
+Add Edges:
+    Add edge (0, 1). This connects vertex 0 and 1. No cycle is formed.
+    Add edge (1, 2). This connects vertex 1 and 2, extending the tree to include vertex 2. No cycle is formed.
+    Add edge (2, 3). This connects vertex 2 and 3, extending the tree to include vertex 3. No cycle is formed.
+
+At this point, adding either (3, 0) or (0, 2) would form a cycle:
+    (3, 0) would close the cycle with vertices 0-1-2-3-0.
+    (0, 2) would close the cycle 0-1-2-0.
+
+Since we've connected all vertices with 3 edges (which is the minimum for a graph with 4 vertices to be connected without forming cycles), we stop here.
+
+Output the MST: The MST edges selected are: [(0, 1), (1, 2), (2, 3)]
+
+----------------------------
+
+Let G be a graph. The edgelist of graph G is the following: [(0, 1), (0, 2), (1, 3), (1, 4), (2, 4), (2, 5), (3, 5)]. What is the minimum spanning tree of G? Output the result as a list.
+
+A Minimum Spanning Tree (MST) is a subset of edges in an undirected graph that connects all the vertices with the minimum possible total edge weight. However, the given graph is a directed acyclic graph (DAG) with no weights on the edges, and MST is typically defined for undirected graphs with weights.
+
+To determine an MST for this scenario, we need to make a few adjustments:
+
+    Consider the graph as undirected.
+    Assign arbitrary weights to the edges if they are not provided (typically, we assume all edges have equal weight).
+
+Assuming All Edges Have Equal Weight
+
+Given the graph:
+[(0, 1), (0, 2), (1, 3), (1, 4), (2, 4), (2, 5), (3, 5)]
+
+We can use Kruskal's or Prim's algorithm to find the MST. Here we will use Kruskal's algorithm for simplicity since it works well with edge lists.
+Kruskal's Algorithm
+
+    Sort all the edges in non-decreasing order of their weight (all weights are equal, so we can process them in any order).
+    Initialize a union-find structure to keep track of connected components.
+    Add edges to the MST one by one, ensuring that no cycles are formed until we have n−1 edges.
+
+Here are the steps in detail:
+
+    Initialize the MST as an empty set.
+    Sort the edges (already sorted due to equal weights).
+    Initialize the union-find data structure.
+    Process each edge in the sorted list:
+        If adding the edge does not form a cycle, add it to the MST.
+
+Steps
+
+    Initialize union-find:
+        Parent array: [0, 1, 2, 3, 4, 5] (each node is its own parent initially)
+        Rank array: [0, 0, 0, 0, 0, 0]
+
+    Process edges:
+        Edge (0, 1): Add to MST
+        Edge (0, 2): Add to MST
+        Edge (1, 3): Add to MST
+        Edge (1, 4): Add to MST
+        Edge (2, 4): Skip (cycle detected)
+        Edge (2, 5): Add to MST
+        Edge (3, 5): Skip (cycle detected)
+
+Resulting MST
+
+The edges added to the MST:
+[(0, 1), (0, 2), (1, 3), (1, 4), (2, 5)]
+Final MST Edgelist
+
+The minimum spanning tree for the given graph is: [(0, 1), (0, 2), (1, 3), (1, 4), (2, 5)]

@@ -1,0 +1,8 @@
+Function CalculateNodeDegree(EdgeList, Node):
+    Initialize degreeCount to 0
+
+    For each edge in EdgeList:
+        If Node is edge[0] or Node is edge[1]:
+            Increment degreeCount by 1
+
+    Return degreeCount

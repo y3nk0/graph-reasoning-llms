@@ -1,0 +1,17 @@
+Function CountNodes(EdgeList):
+    // EdgeList is a list where each element is a tuple (u, v),
+    // indicating an edge between nodes u and v.
+
+    // Initialize a set to store unique nodes
+    Found = Set()
+
+    // Iterate through each edge in the edge list
+    For each edge (u, v) in EdgeList:
+        // Add both nodes of the edge to the set
+	if u not in Found:
+            Add u to Found
+        if u not in Found:
+            Add v to Found
+
+    // The size of Found represents the total number of unique nodes
+    Return Size of Found

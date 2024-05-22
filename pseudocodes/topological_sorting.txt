@@ -1,0 +1,21 @@
+FUNCTION topological_sorting(edgelist):
+    INITIALIZE outgoing_dict to map each vertex to its list of outgoing edges
+    INITIALIZE inc_count_dict to map each vertex to its incoming edge count
+    INITIALIZE sorted_list to store the sorted vertices
+
+    FOR EACH edge (vertex1, vertex2) IN edgelist:
+        ADD vertex2 to the list outgoing_dict[vertex1]
+        INCREMENT inc_count_dict[vertex2]
+
+    FOR EACH vertex IN inc_count_dict:
+        IF the inc_count_dict[vertex] is 0:
+            ADD vertex to sorted_list
+
+    WHILE length of sorted_list is not equal to the total number of vertices:
+        FOR EACH vertex IN the dictionary of incoming edge counts:
+            IF inc_count_dict[vertex] is 0:
+                ADD vertex to sorted_list
+                FOR EACH outgoing edge (vertex, neighbor) IN the dictionary of outgoing edges for vertex:
+                    DECREMENT inc_count_dict[neighbor]
+
+    RETURN sorted_list

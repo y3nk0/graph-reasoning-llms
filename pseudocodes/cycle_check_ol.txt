@@ -1,0 +1,10 @@
+1. Create an empty set called `visited` and an empty list called `cycle`.
+2. For each edge `(u, v)` in the edgelist:
+   a. If `u` is not in `visited`:
+       i. Add `u` to `visited`.
+       ii. Recursively call this function on `v`.
+   b. If `v` is in `visited` and `v` is not the same as the previous element in the `cycle` list:
+       i. Add `u` to the `cycle` list.
+       ii. Output "There is a cycle."
+       iii. Return.
+3. If the `cycle` list is empty, output "There is no cycle."

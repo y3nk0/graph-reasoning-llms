@@ -1,0 +1,11 @@
+Function CountEdges(edgeList):
+    // Initialize the count of edges
+    edgeCount = 0
+
+    // Iterate through the list of edges
+    for edge in edgeList:
+        // edgeCount increases by 1
+        edgeCount = edgeCount + 1
+
+    // Return the total count of edges
+    return edgeCount

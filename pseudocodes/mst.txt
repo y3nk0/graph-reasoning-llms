@@ -1,0 +1,24 @@
+
+FUNCTION minimum_spanning_tree(edgelist):    
+    INITIALIZE vertices with the unique vertices of edgelist
+    # Initialize a mapping from each vertex to itself
+    INITIALIZE vertex_to_set AS an empty dictionary
+    FOR EACH vertex IN vertices:
+        vertex_to_set[vertex] = vertex
+    
+    # Initialize a list to store edges of the MST
+    INITIALIZE mst_edges AS an empty list
+    # Iterate over edgelist to find MST using a simple union approach
+    FOR EACH edge (vertex1, vertex2) IN edgelist:
+        
+    	IF vertex_to_set[vertex1] is not equal to vertex_to_set[vertex2]:
+	    # Add edge to mst_edges
+	    APPEND edge (vertex1, vertex2) TO mst_edges
+	    PRINT mst_edges
+	    PRINT vertex_to_set
+            FOR EACH vertex IN vertices:
+		# check if vertex in same set with vertex2
+                IF vertex_to_set[vertex] is equal to vertex_to_set[vertex2]:
+                    vertex_to_set[vertex] = vertex_to_set[vertex1]
+
+    RETURN mst_edges

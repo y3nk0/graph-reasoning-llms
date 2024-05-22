@@ -1,0 +1,7 @@
+This is the pseudocode to compute whether there is a cycle in a graph given its edgelist:
+Cycle check
+1. Initialize an empty list for nodes and a dictionary for neighbors.
+2. Build the graph from the given list of edges.
+3. Traverse each node to check for cycles using a BFS approach.
+4. If a cycle is found in any connected component, return True indicating that the graph has a cycle.
+Without showing me the code and running code, use the above pseudocode step-by-step and tell me whether there is a cycle in the given graph G. Output: "The graph has or does not have a cycle."

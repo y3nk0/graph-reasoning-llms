@@ -1,0 +1,32 @@
+Function shortest_path_bfs(edgelist: list of tuples (node1, node2), source_node: int, target_node: int):
+    Initialize 'neighbors' as an empty dictionary to store adjacency lists for each node
+    For each 'edge' in 'edgelist':
+        If 'edge[0]' not in 'neighbors':
+            Initialize 'neighbors[edge[0]]' as an empty list
+        Append 'edge[1]' to 'neighbors[edge[0]]'
+        If 'edge[1]' not in 'neighbors':
+            Initialize 'neighbors[edge[1]]' as an empty list
+        Append 'edge[0]' to 'neighbors[edge[1]]'
+
+    Initialize 'queue' as an empty list
+    Initialize 'visited' as an empty set
+    Initialize 'distance' as a dictionary where each key is a node and each value is set to infinity
+    Set 'distance[source_node]' to 0
+    Enqueue (source_node, 0) onto 'queue'  # Enqueue tuple of node and its current distance
+
+    While 'queue' is not empty:
+        'current_node', 'current_distance' = Dequeue from 'queue'
+        If 'current_node' is 'target_node':
+            Return 'current_distance'
+        If 'current_node' not in 'visited':
+            Add 'current_node' to 'visited'
+            For each 'neighbor' in 'neighbors[current_node]':
+                If 'neighbor' not in 'visited':
+                    If 'distance[neighbor]' is greater than 'current_distance' + 1:
+                        Set 'distance[neighbor]' to 'current_distance' + 1
+                        Enqueue (neighbor, 'current_distance' + 1) onto 'queue'
+
+    If 'distance[target_node]' is infinity:
+        Return -1  # Indicates there is no path from source to target
+    Else:
+        Return 'distance[target_node]'  # Return the shortest path distance

@@ -1,0 +1,9 @@
+FUNCTION connected_nodes(edgelist, target):
+    INITIALIZE neighbors AS an empty list
+    FOR EACH edge (u, v) IN edgelist:
+        IF target EQUALS u:
+            Append v to neighbors
+        IF target EQUALS v:
+            Append u to neighbors
+
+    RETURN neighbors

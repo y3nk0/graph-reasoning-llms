@@ -1,0 +1,10 @@
+Let G be a graph. The edgelist of graph G is the following: [(0, 1), (0, 3), (1, 2), (1, 4), (3, 4), (3, 5), (2, 5), (4, 5)]. What is the number of nodes of G? Output the result like that: The number of nodes is ...
+To find the number of nodes in graph G, we can observe the unique vertices present in the edge list. Let's count them:
+
+(0, 1), (0, 3), (1, 2), (1, 4), (3, 4), (3, 5), (2, 5), (4, 5)
+
+The unique vertices are: 0, 1, 2, 3, 4, 5.
+
+Therefore, the number of nodes in graph G is 6.
+
+Output: "The number of nodes is 6."

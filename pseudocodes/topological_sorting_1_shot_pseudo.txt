@@ -1,0 +1,74 @@
+FUNCTION topological_sorting(edgelist):
+    INITIALIZE outgoing_dict to map each vertex to its list of outgoing edges
+    INITIALIZE inc_count_dict to map each vertex to its incoming edge count
+    INITIALIZE sorted_list to store the sorted vertices
+
+    FOR EACH edge (vertex1, vertex2) IN edgelist:
+        ADD vertex2 to the list outgoing_dict[vertex1]
+        INCREMENT inc_count_dict[vertex2]
+
+    FOR EACH vertex IN inc_count_dict:
+        IF the inc_count_dict[vertex] is 0:
+            ADD vertex to sorted_list
+
+    WHILE length of sorted_list is not equal to the total number of vertices:
+        FOR EACH vertex IN the dictionary of incoming edge counts:
+            IF inc_count_dict[vertex] is 0:
+                ADD vertex to sorted_list
+                FOR EACH outgoing edge (vertex, neighbor) IN the dictionary of outgoing edges for vertex:
+                    DECREMENT inc_count_dict[neighbor]
+
+    RETURN sorted_list
+
+Let G be a graph. The edgelist of graph G is the following: [(0, 1), (0, 3), (1, 2), (1, 4), (3, 4), (3, 5), (2, 5), (4, 5)]. Graph G is a directed acyclic graph. What is the topological sorting of G? Follow the above pseudocode step-by-step to find the topological sorting of graph G. Output the result as a list.
+
+To perform the topological sorting of graph G with the given edge list using the provided pseudocode, let's follow each step of the pseudocode to simulate what it would produce.
+Step 1: Initialize data structures
+
+    outgoing_dict: Map each vertex to its list of outgoing edges.
+    inc_count_dict: Map each vertex to its incoming edge count.
+    sorted_list: Store the sorted vertices.
+
+Step 2: Process each edge
+
+For the edgelist [(0, 1), (0, 3), (1, 2), (1, 4), (3, 4), (3, 5), (2, 5), (4, 5)], the dictionaries will be updated as follows:
+
+    outgoing_dict:
+        0 -> [1, 3]
+        1 -> [2, 4]
+        2 -> [5]
+        3 -> [4, 5]
+        4 -> [5]
+        5 -> []
+
+    inc_count_dict:
+        1 -> 1 (from 0)
+        2 -> 1 (from 1)
+        3 -> 1 (from 0)
+        4 -> 2 (from 1, 3)
+        5 -> 3 (from 2, 3, 4)
+        0 -> 0 (no incoming edges)
+
+Step 3: Initialize sorted_list with vertices with 0 incoming edges
+
+    sorted_list: [0]
+
+Step 4: Process the graph to find topological order
+
+Using a loop, we'll process each vertex with 0 incoming edges, add it to sorted_list, and update the incoming edge counts of its neighbors:
+
+    Start with 0 in sorted_list: [0]
+        Process 1: decrement inc_count for 1 to 0
+        Process 3: decrement inc_count for 3 to 0
+
+    sorted_list: [0, 1, 3] (added vertices with updated incoming count of 0)
+        Process 1: decrement inc_count for 2 to 0, decrement inc_count for 4 to 1
+        Process 3: decrement inc_count for 4 to 0, decrement inc_count for 5 to 2
+
+    sorted_list: [0, 1, 3, 2, 4] (added vertices 2 and 4 after their inc_counts dropped to 0)
+        Process 2: decrement inc_count for 5 to 1
+        Process 4: decrement inc_count for 5 to 0
+
+    sorted_list: [0, 1, 3, 2, 4, 5] (added vertex 5, all vertices included)
+
+Resulting Topological Sort: [0, 1, 3, 2, 4, 5]

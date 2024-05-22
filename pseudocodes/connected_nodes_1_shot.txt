@@ -1,0 +1,6 @@
+Let G be a graph. The edgelist of graph G is the following: [(0, 1), (1, 2), (2, 3), (3, 0), (0, 2)]. Which nodes are the neighbors of node 3? Output the result as a list.
+To find the neighbors of node 3 in the given graph represented by the edge list [(0, 1), (1, 2), (2, 3), (3, 0), (0, 2)], we simply need to identify the nodes that are directly connected to node 3.
+
+From the edge list, we can see that node 3 is connected to node 0 and node 2.
+
+So, the neighbors of node 3 are: [0, 2]

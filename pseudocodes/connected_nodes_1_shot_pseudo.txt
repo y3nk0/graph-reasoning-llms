@@ -1,0 +1,30 @@
+FUNCTION connected_nodes(edgelist, target):
+    INITIALIZE neighbors AS an empty list
+    FOR EACH edge (u, v) IN edgelist:
+        IF target EQUALS u:
+            Append v to neighbors
+        IF target EQUALS v:
+            Append u to neighbors
+
+    RETURN neighbors
+Let G be a graph. The edgelist of graph G is the following: [(0, 1), (1, 2), (2, 3), (3, 0), (0, 2)]. Which nodes are the neighbors of node 3? Follow the above pseudocode step-by-step and show all steps. Output the result as a list.
+To find the neighbors of node 3 using the given pseudocode function connected_nodes and the edgelist for graph G, we need to iterate over each edge in the edgelist and check if node 3 is part of the edge. If it is, the other node in the edge is a neighbor of node 3. Here are the steps:
+
+    Initialize an empty list called neighbors.
+
+    Begin iterating through each edge in the provided edgelist, which is: [(0, 1), (1, 2), (2, 3), (3, 0), (0, 2)].
+
+    For each edge (u, v):
+        Check if u is 3; if yes, append v to neighbors.
+        Check if v is 3; if yes, append u to neighbors.
+
+    Iterate through each edge:
+        Edge (0, 1): Neither 0 nor 1 is 3.
+        Edge (1, 2): Neither 1 nor 2 is 3.
+        Edge (2, 3): Node 3 matches v, so append u (2) to neighbors.
+        Edge (3, 0): Node 3 matches u, so append v (0) to neighbors.
+        Edge (0, 2): Neither 0 nor 2 is 3.
+
+    At the end of the iteration, the neighbors list contains [2, 0].
+
+Thus, the neighbors of node 3 in graph G are: [2, 0]

@@ -1,0 +1,110 @@
+Procedure IsBipartite(EdgeList):
+    Initialize colorMap as an empty dictionary  // To store colors of vertices
+    Initialize queue as an empty queue
+
+    // Create adjacency list from the edge list
+    adjacencyList = {}
+    For each edge (u, v) in EdgeList:
+        Add v to adjacencyList[u]
+        Add u to adjacencyList[v]
+
+    For each vertex in adjacencyList:
+        If vertex is not in colorMap:  // Vertex has not been colored
+            colorMap[vertex] = 0  // Start coloring with color 0
+            queue.enqueue(vertex)
+
+            While queue is not empty:
+                current = queue.dequeue()
+
+                For each neighbor of current in adjacencyList:
+                    If neighbor is not in colorMap:  // If neighbor has no color
+                        colorMap[neighbor] = 1 - colorMap[current]  // Assign opposite color
+                        queue.enqueue(neighbor)
+                    Else If colorMap[neighbor] == colorMap[current]:  // Neighbor has the same color
+                        Return False  // Graph is not bipartite
+
+    Return True  // If no conflicts in coloring, graph is bipartite
+
+Let G be a graph. The edgelist of graph G is the following: [(0, 3), (0, 4), (1, 4), (2, 5)]. Is graph G bipartite or not? Follow the provided pseudocode step-by-step and show all the steps. Output the result like that: "Yes, the graph G is bipartite." or "No, the graph G is not bipartite."
+
+To determine if the given graph GG with the edge list [(0,3),(0,4),(1,4),(2,5)] is bipartite or not, we will follow the provided pseudocode step-by-step. Let's proceed:
+Step-by-Step Execution:
+
+    Initialize colorMap and queue:
+        colorMap is an empty dictionary: {}
+        queue is an empty queue: []
+
+    Create adjacency list from the edge list:
+        Initialize adjacencyList as an empty dictionary: {}
+        For each edge (u,v)(u,v) in the edge list, update the adjacency list:
+            For edge (0,3)(0,3):
+                Add 3 to adjacencyList[0]
+                Add 0 to adjacencyList[3]
+                adjacencyList: {0: [3], 3: [0]}
+            For edge (0,4)(0,4):
+                Add 4 to adjacencyList[0]
+                Add 0 to adjacencyList[4]
+                adjacencyList: {0: [3, 4], 3: [0], 4: [0]}
+            For edge (1,4)(1,4):
+                Add 4 to adjacencyList[1]
+                Add 1 to adjacencyList[4]
+                adjacencyList: {0: [3, 4], 3: [0], 4: [0, 1], 1: [4]}
+            For edge (2,5)(2,5):
+                Add 5 to adjacencyList[2]
+                Add 2 to adjacencyList[5]
+                adjacencyList: {0: [3, 4], 3: [0], 4: [0, 1], 1: [4], 2: [5], 5: [2]}
+
+    Coloring process and BFS traversal:
+        For each vertex in adjacencyList:
+            Vertex 0:
+                Since 0 is not in colorMap, color it with 0: colorMap = {0: 0}
+                Enqueue vertex 0: queue = [0]
+                Process the queue:
+                    Dequeue vertex 0: current = 0, queue = []
+                    For each neighbor of 0 in adjacencyList:
+                        Neighbor 3:
+                            3 is not in colorMap, color it with 1: colorMap = {0: 0, 3: 1}
+                            Enqueue vertex 3: queue = [3]
+                        Neighbor 4:
+                            4 is not in colorMap, color it with 1: colorMap = {0: 0, 3: 1, 4: 1}
+                            Enqueue vertex 4: queue = [3, 4]
+                    Dequeue vertex 3: current = 3, queue = [4]
+                    For each neighbor of 3 in adjacencyList:
+                        Neighbor 0:
+                            0 is already in colorMap and has a different color than 3 (0 vs 1), no conflict.
+                    Dequeue vertex 4: current = 4, queue = []
+                    For each neighbor of 4 in adjacencyList:
+                        Neighbor 0:
+                            0 is already in colorMap and has a different color than 4 (0 vs 1), no conflict.
+                        Neighbor 1:
+                            1 is not in colorMap, color it with 0: colorMap = {0: 0, 3: 1, 4: 1, 1: 0}
+                            Enqueue vertex 1: queue = [1]
+                    Dequeue vertex 1: current = 1, queue = []
+                    For each neighbor of 1 in adjacencyList:
+                        Neighbor 4:
+                            4 is already in colorMap and has a different color than 1 (1 vs 0), no conflict.
+            Vertex 3: (already colored)
+            Vertex 4: (already colored)
+            Vertex 1: (already colored)
+            Vertex 2:
+                Since 2 is not in colorMap, color it with 0: colorMap = {0: 0, 3: 1, 4: 1, 1: 0, 2: 0}
+                Enqueue vertex 2: queue = [2]
+                Process the queue:
+                    Dequeue vertex 2: current = 2, queue = []
+                    For each neighbor of 2 in adjacencyList:
+                        Neighbor 5:
+                            5 is not in colorMap, color it with 1: colorMap = {0: 0, 3: 1, 4: 1, 1: 0, 2: 0, 5: 1}
+                            Enqueue vertex 5: queue = [5]
+                    Dequeue vertex 5: current = 5, queue = []
+                    For each neighbor of 5 in adjacencyList:
+                        Neighbor 2:
+                            2 is already in colorMap and has a different color than 5 (0 vs 1), no conflict.
+            Vertex 5: (already colored)
+
+    Final check:
+        All vertices have been processed with no conflicts in coloring.
+
+Since we did not encounter any conflicts during the coloring process, the graph G is bipartite.
+Result:
+
+Yes, the graph G is bipartite.

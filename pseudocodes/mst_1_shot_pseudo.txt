@@ -1,0 +1,40 @@
+FUNCTION minimum_spanning_tree(edgelist):
+    INITIALIZE vertices with the unique vertices of edgelist
+    # Initialize a mapping from each vertex to itself
+    INITIALIZE vertex_to_set AS an empty dictionary
+    FOR EACH vertex IN vertices:
+        vertex_to_set[vertex] = vertex
+
+    # Initialize a list to store edges of the MST
+    INITIALIZE mst_edges AS an empty list
+    # Iterate over edgelist to find MST using a simple union approach
+    FOR EACH edge (vertex1, vertex2) IN edgelist:
+    	IF vertex_to_set[vertex1] is not equal to vertex_to_set[vertex2]:
+	    # Add edge to mst_edges
+	    APPEND edge (vertex1, vertex2) TO mst_edges
+            # Update vertex_to_set so that all entries with a value of vertex_to_set[vertex2] are set to vertex_to_set[vertex1]
+            FOR EACH vertex IN vertices:
+		# check if vertex in same set with vertex2
+                PRINT vertex_to_set
+                IF vertex_to_set[vertex] is equal to vertex_to_set[vertex2]:
+                    vertex_to_set[vertex] = vertex_to_set[vertex1]
+                    PRINT vertex_to_set
+
+    RETURN mst_edges
+
+Let G be a graph. The edgelist of graph G is the following: [(0, 1), (1, 2), (2, 3), (3, 0), (0, 2)]. What is the minimum spanning tree of G? Follow the provided pseudocode step-by-step and show all steps. Output the result as a list.
+Step-by-Step Execution:
+
+Initialization:
+    Vertices: Extracted from the edge list: {0, 1, 2, 3}.
+    vertex_to_set: Initially, each vertex maps to itself, i.e., {0: 0, 1: 1, 2: 2, 3: 3}.
+    mst_edges: List to hold edges of the MST, initially empty [].
+
+Process Each Edge:
+    First Edge (0, 1): vertex_to_set[0] is 0, vertex_to_set[1] is 1. They are different, so the edge (0, 1) is added to mst_edges. Now, mst_edges = [(0, 1)]. We update vertex_to_set so that all entries with a value of 1 are set to 0. After update: {0: 0, 1: 0, 2: 2, 3: 3}.
+    Second Edge (1, 2): After updating, vertex_to_set[1] and vertex_to_set[2] are 0 and 2, respectively. They are different, so the edge (1, 2) is added. Now, mst_edges = [(0, 1), (1, 2)]. Update vertex_to_set so that all entries with a value of 2 are set to 0. After update: {0: 0, 1: 0, 2: 0, 3: 3}.
+    Third Edge (2, 3): After updating, vertex_to_set[2] and vertex_to_set[3] are 0 and 3, respectively. They are different, so the edge (2, 3) is added. Now, mst_edges = [(0, 1), (1, 2), (2, 3)]. Update vertex_to_set so that all entries with a value of 3 are set to 0. After update: {0: 0, 1: 0, 2: 0, 3: 0}.
+    Fourth Edge (3, 0) and Fifth Edge (0, 2): Both edges are now connecting vertices already in the same set (all map to 0), indicating they would form cycles. These edges are not added.
+
+Final Output:
+    The final MST edges based on the logic provided are [(0, 1), (1, 2), (2, 3)]
